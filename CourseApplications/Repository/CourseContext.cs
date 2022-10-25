@@ -15,10 +15,11 @@ public class CourseContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder mb)
     {
-        mb.Entity<Subscription>().HasOne(a => a.Course).WithOne(a => a.Subscription).HasForeignKey<Course>(a => a.CourseId);
-        mb.Entity<Course>().HasOne(a => a.Subscription).WithOne(a => a.Course).HasForeignKey<Course>(a => a.SubscriptionId);
-        mb.Entity<Subscription>().HasOne(a => a.Candidate).WithMany(a => a.Subscriptions).HasForeignKey(a => a.CandidateId);
-        mb.Entity<Candidate>().HasMany(a => a.Subscriptions).WithOne(a => a.Candidate);
+       mb.Entity<Subscription>().HasKey(sub => new { sub.CandidateId, sub.CourseId });
+        // mb.Entity<Subscription>().HasOne(a => a.Course).WithOne(a => a.Subscription).HasForeignKey<Course>(a => a.CourseId);
+        // mb.Entity<Course>().HasOne(a => a.Subscription).WithOne(a => a.Course).HasForeignKey<Course>(a => a.SubscriptionId);
+        // mb.Entity<Subscription>().HasOne(a => a.Candidate).WithMany(a => a.Subscriptions).HasForeignKey(a => a.CandidateId);
+        // mb.Entity<Candidate>().HasMany(a => a.Subscriptions).WithOne(a => a.Candidate);
         
     }
 }

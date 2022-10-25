@@ -9,10 +9,7 @@ namespace CourseApplications.Models
     public Guid SubscriptionId { get; set; }
 
     // Chaves estrangeiras
-    [ForeignKey("CandidateId")]
     public Guid? CandidateId { get; set; }
-
-    [ForeignKey("CourseId")]
     public Guid? CourseId { get; set; }
 
 

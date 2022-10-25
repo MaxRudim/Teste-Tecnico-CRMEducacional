@@ -10,10 +10,5 @@ namespace CourseApplications.Models
 
     [Required]
     public string CourseName { get; set; }
-
-    [ForeignKey("SubscriptionId")]
-    public Guid SubscriptionId { get; set; }
-
-    public Subscription? Subscription { get; set; }
   }
 }

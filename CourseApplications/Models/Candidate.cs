@@ -18,8 +18,6 @@ namespace CourseApplications.Models
 
     [Required]
     public string Cpf { get; set; }
-
-    [ForeignKey("SubscriptionId")]
     public ICollection<Subscription>? Subscriptions { get; set; }
   }
 }

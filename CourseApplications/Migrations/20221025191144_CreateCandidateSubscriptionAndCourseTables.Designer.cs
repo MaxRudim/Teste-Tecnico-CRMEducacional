@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CourseApplications.Migrations
 {
     [DbContext(typeof(CourseContext))]
-    [Migration("20221025185144_CreateCandidateSubscriptionAndCourseTables")]
+    [Migration("20221025191144_CreateCandidateSubscriptionAndCourseTables")]
     partial class CreateCandidateSubscriptionAndCourseTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -58,64 +58,51 @@ namespace CourseApplications.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("SubscriptionId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("CourseId");
-
-                    b.HasIndex("SubscriptionId")
-                        .IsUnique();
 
                     b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("CourseApplications.Models.Subscription", b =>
                 {
-                    b.Property<Guid>("SubscriptionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid?>("CandidateId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("CourseId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("SubscriptionId");
+                    b.Property<Guid>("SubscriptionId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasIndex("CandidateId");
+                    b.HasKey("CandidateId", "CourseId");
+
+                    b.HasIndex("CourseId");
 
                     b.ToTable("Subscriptions");
-                });
-
-            modelBuilder.Entity("CourseApplications.Models.Course", b =>
-                {
-                    b.HasOne("CourseApplications.Models.Subscription", "Subscription")
-                        .WithOne("Course")
-                        .HasForeignKey("CourseApplications.Models.Course", "SubscriptionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Subscription");
                 });
 
             modelBuilder.Entity("CourseApplications.Models.Subscription", b =>
                 {
                     b.HasOne("CourseApplications.Models.Candidate", "Candidate")
                         .WithMany("Subscriptions")
-                        .HasForeignKey("CandidateId");
+                        .HasForeignKey("CandidateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CourseApplications.Models.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Candidate");
+
+                    b.Navigation("Course");
                 });
 
             modelBuilder.Entity("CourseApplications.Models.Candidate", b =>
                 {
                     b.Navigation("Subscriptions");
-                });
-
-            modelBuilder.Entity("CourseApplications.Models.Subscription", b =>
-                {
-                    b.Navigation("Course");
                 });
 #pragma warning restore 612, 618
         }
