@@ -10,5 +10,7 @@ namespace CourseApplications.Models
 
     [Required]
     public string CourseName { get; set; }
+
+    public Guid SubscriptionId { get; set; }
   }
 }

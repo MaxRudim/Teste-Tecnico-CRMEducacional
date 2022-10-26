@@ -56,6 +56,9 @@ namespace CourseApplications.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("SubscriptionId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("CourseId");
 
                     b.ToTable("Courses");
