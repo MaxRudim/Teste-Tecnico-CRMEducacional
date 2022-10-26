@@ -8,6 +8,8 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<CourseContext>();
 builder.Services.AddScoped<ICourseContext, CourseContext>();
 builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
+builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+builder.Services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

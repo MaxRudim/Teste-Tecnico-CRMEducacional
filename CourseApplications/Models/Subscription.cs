@@ -9,8 +9,8 @@ namespace CourseApplications.Models
     public Guid SubscriptionId { get; set; }
 
     // Chaves estrangeiras
-    public Guid? CandidateId { get; set; }
-    public Guid? CourseId { get; set; }
+    public Guid CandidateId { get; set; }
+    public Guid CourseId { get; set; }
 
 
     // Propriedades de navegação
