@@ -44,6 +44,13 @@ public class CandidateRepository : ICandidateRepository
         return candidate;
     }
 
+    public async Task<Candidate?> GetByEmail(string email)
+    {
+        var candidate = await _context.Candidates!.AsNoTracking().FirstOrDefaultAsync(a => a.Email == email);
+
+        return candidate;
+    }
+
     public async Task<IEnumerable<Candidate>> GetAll()
     {
         var candidates = await _context.Candidates!.ToListAsync();
