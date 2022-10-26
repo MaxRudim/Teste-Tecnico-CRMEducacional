@@ -1,9 +1,14 @@
+using CourseApplications.Repository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddDbContext<CourseContext>();
+builder.Services.AddScoped<ICourseContext, CourseContext>();
+builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

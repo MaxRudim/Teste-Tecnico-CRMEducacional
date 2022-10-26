@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using CourseApplications.Models;
 
 namespace CourseApplications.Repository;
-public class CourseContext : DbContext
+public class CourseContext : DbContext, ICourseContext
 {
     public DbSet<Candidate>? Candidates { get; set; }
     public DbSet<Course>? Courses { get; set; }

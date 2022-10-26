@@ -32,12 +32,6 @@ public class CourseTestContext : CourseContext
           .WithMany(i => i.Subscriptions)
           .HasForeignKey(b => b.CandidateId)
           .OnDelete(DeleteBehavior.Cascade);
-
-        modelBuilder.Entity<Candidate>()
-          .HasMany(i => i.Subscriptions)
-          .WithOne(i => i.Candidate)
-          .HasForeignKey(b => b.SubscriptionId)
-          .OnDelete(DeleteBehavior.Cascade);
     }
 
 }

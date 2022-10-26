@@ -5,7 +5,7 @@ using FluentAssertions;
 
 namespace CourseApplications.Test.Repository
 {
-    public class UserRepositoryTest
+    public class CandidateRepositoryTest
     {
         [Theory]
         [InlineData("email@email.com", "123456", "435.861.890-10")]
@@ -42,8 +42,8 @@ namespace CourseApplications.Test.Repository
 
             //Act
             var result = await candidateRepository.Add(candidate);
-            var userSaved = await candidateRepository.Get(result.CandidateId);
-            userSaved.Should().BeEquivalentTo(candidate);
+            var candidateSaved = await candidateRepository.Get(result.CandidateId);
+            candidateSaved.Should().BeEquivalentTo(candidate);
             await candidateRepository.Delete(result.CandidateId);
 
             //Assert
@@ -67,10 +67,10 @@ namespace CourseApplications.Test.Repository
 
             //Act
             var result = await candidateRepository.Add(candidate);
-            var userSaved = await candidateRepository.Get(result.CandidateId);
-            userSaved.Should().BeEquivalentTo(candidate);
-            userSaved!.Password = novoPassword;
-            await candidateRepository.Update(userSaved);
+            var candidateSaved = await candidateRepository.Get(result.CandidateId);
+            candidateSaved.Should().BeEquivalentTo(candidate);
+            candidateSaved!.Password = novoPassword;
+            await candidateRepository.Update(candidateSaved);
 
             //Assert
             var candidateOnDatabase = await candidateRepository.Get(result.CandidateId);

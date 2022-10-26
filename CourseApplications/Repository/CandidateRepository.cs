@@ -39,16 +39,16 @@ public class CandidateRepository : ICandidateRepository
 
     public async Task<Candidate?> Get(Guid CandidateId)
     {
-        var user = await _context.Candidates!.AsNoTracking().FirstOrDefaultAsync(a => a.CandidateId == CandidateId);
+        var candidate = await _context.Candidates!.AsNoTracking().FirstOrDefaultAsync(a => a.CandidateId == CandidateId);
 
-        return user;
+        return candidate;
     }
 
     public async Task<IEnumerable<Candidate>> GetAll()
     {
-        var users = await _context.Candidates!.ToListAsync();
+        var candidates = await _context.Candidates!.ToListAsync();
 
-        return users;
+        return candidates;
     }
 
 }
