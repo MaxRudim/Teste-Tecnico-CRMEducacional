@@ -32,14 +32,19 @@ public class SubscriptionController : Controller
     {
         try
         {
+            subscription.SubscriptionId = Guid.NewGuid();
             var courseExist = await _courseRepository.Get(subscription.CourseId);
             if (courseExist is null) throw new InvalidOperationException("O Id do curso informado não existe.");
 
             var candidateExist = await _candidateRepository.Get(subscription.CandidateId);
             if (candidateExist is null) throw new InvalidOperationException("O Id do candidato informado não existe.");
 
+            var subscriptionExist = await _repository.Get(subscription.SubscriptionId);
+            if (subscriptionExist is not null) throw new InvalidOperationException("Esta inscrição já existe.");
+
             var output = await _repository.Add(subscription);
-            return CreatedAtAction("GetSubscription", new { id = output.SubscriptionId }, output);
+
+            return CreatedAtAction(nameof(GetSubscription), new { id = subscription.SubscriptionId }, subscription);
         }
         catch (InvalidOperationException ex)
         {
