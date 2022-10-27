@@ -44,9 +44,9 @@ public class CandidateRepository : ICandidateRepository
         return candidate;
     }
 
-    public async Task<Candidate?> GetByEmail(string email)
+    public async Task<Candidate?> GetByCpf(string cpf)
     {
-        var candidate = await _context.Candidates!.AsNoTracking().FirstOrDefaultAsync(a => a.Email == email);
+        var candidate = await _context.Candidates!.AsNoTracking().FirstOrDefaultAsync(a => a.Cpf == cpf);
 
         return candidate;
     }

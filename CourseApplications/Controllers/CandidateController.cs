@@ -22,7 +22,7 @@ public class CandidateController : Controller
 
         try
         {
-            var candidate = await _repository.GetByEmail(loginData.Email);
+            var candidate = await _repository.GetByCpf(loginData.Cpf);
 
             if (candidate is null) throw new InvalidOperationException("O candidato não existe");
             if(candidate.Password != loginData.Password) throw new InvalidOperationException("Senha inválida");
@@ -42,8 +42,11 @@ public class CandidateController : Controller
     {
         try
         {
-            var candidateExist = await _repository.GetByEmail(candidate.Email);
+            var candidateExist = await _repository.GetByCpf(candidate.Cpf);
             if (candidateExist is not null) throw new InvalidOperationException("Candidato já existente");
+
+            var validCpf = ValidaCPF.IsCpf(candidate.Cpf);
+            if (validCpf == false) throw new InvalidOperationException("Cpf inválido");
 
             var output = await _repository.Add(candidate);
             return CreatedAtAction("GetCandidate", new { id = output.CandidateId }, output);
@@ -115,7 +118,7 @@ public class CandidateController : Controller
             var candidateExist = await _repository.Get(candidate.CandidateId);
             if (candidateExist == null) throw new InvalidOperationException("O candidato não existe");
 
-            candidateExist.Cpf = candidate.Cpf;
+            // candidateExist.Cpf = candidate.Cpf;  -- Cpf não pode ser alterado.
             candidateExist.Email = candidate.Email;
             candidateExist.Password = candidate.Password;
 

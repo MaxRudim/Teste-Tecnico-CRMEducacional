@@ -8,6 +8,6 @@ public interface ICandidateRepository
   public Task Delete(Guid id);
   public Task Update(Candidate candidate);
   public Task<Candidate?> Get(Guid CandidateId);
-  public Task<Candidate?> GetByEmail(string email);
+  public Task<Candidate?> GetByCpf(string cpf);
   public Task<IEnumerable<Candidate>> GetAll();
 }
