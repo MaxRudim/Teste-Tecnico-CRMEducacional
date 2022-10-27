@@ -27,7 +27,7 @@ public class SubscriptionController : Controller
     }
 
     [HttpPost()]
-    [AllowAnonymous]
+    [Authorize]
     public async Task<IActionResult> CreateSubscription([FromBody] Subscription subscription)
     {
         try
@@ -53,7 +53,7 @@ public class SubscriptionController : Controller
     }
 
     [HttpDelete("{id}")]
-    // [Authorize]
+    [Authorize]
     public async Task<IActionResult> DeleteSubscription(Guid id)
     {
         try
@@ -71,7 +71,7 @@ public class SubscriptionController : Controller
     }
 
     [HttpGet()]
-    // [Authorize]
+    [Authorize]
     public async Task<IActionResult> GetAllSubscriptions()
     {
         try
@@ -88,7 +88,7 @@ public class SubscriptionController : Controller
     }
     
     [HttpGet("{id}")]
-    // [Authorize]
+    [Authorize]
     public async Task<IActionResult> GetSubscription(string id)
     {
         try
@@ -105,7 +105,7 @@ public class SubscriptionController : Controller
     }
 
     [HttpPut()]
-    // [Authorize]
+    [Authorize]
     public async Task<IActionResult> UpdateSubscription([FromBody] Subscription subscription)
     {
         try

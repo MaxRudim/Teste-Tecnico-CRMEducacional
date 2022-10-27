@@ -16,7 +16,7 @@ public class CourseController : Controller
     }
 
     [HttpPost()]
-    [AllowAnonymous]
+    [Authorize]
     public async Task<IActionResult> CreateCourse([FromBody] Course course)
     {
         try
@@ -34,7 +34,7 @@ public class CourseController : Controller
     }
 
     [HttpDelete("{id}")]
-    // [Authorize]
+    [Authorize]
     public async Task<IActionResult> DeleteCourse(Guid id)
     {
         try
@@ -52,7 +52,7 @@ public class CourseController : Controller
     }
 
     [HttpGet()]
-    // [Authorize]
+    [Authorize]
     public async Task<IActionResult> GetAllCourses()
     {
         try
@@ -69,7 +69,7 @@ public class CourseController : Controller
     }
     
     [HttpGet("{id}")]
-    // [Authorize]
+    [Authorize]
     public async Task<IActionResult> GetCourse(string id)
     {
         try
@@ -86,7 +86,7 @@ public class CourseController : Controller
     }
 
     [HttpPut()]
-    // [Authorize]
+    [Authorize]
     public async Task<IActionResult> UpdateCandidate([FromBody] Course course)
     {
         try

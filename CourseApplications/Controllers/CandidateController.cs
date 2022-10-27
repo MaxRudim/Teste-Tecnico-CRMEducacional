@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using CourseApplications.Models;
 using CourseApplications.Repository;
+using CourseApplications.Middlewares;
 
 namespace CourseApplications.Controllers;
 
@@ -14,19 +15,26 @@ public class CandidateController : Controller
     {
         _repository = repository;
     }
-    // [HttpPost("Authentication")]
-    // public async Task<IActionResult> Authenticate([FromBody] LoginData loginData)
-    // {
-    //     try
-    //     {
-    //         var token = await _service.Authenticate(loginData);
-    //         return Ok(token);
-    //     }
-    //     catch (InvalidOperationException ex)
-    //     {
-    //         return BadRequest(ex.Message);
-    //     }
-    // }
+
+    [HttpPost("Authentication")]
+    public async Task<IActionResult> Authenticate([FromBody] LoginData loginData)
+    {
+
+        try
+        {
+            var candidate = await _repository.GetByEmail(loginData.Email);
+
+            if (candidate is null) throw new InvalidOperationException("O candidato não existe");
+            if(candidate.Password != loginData.Password) throw new InvalidOperationException("Senha inválida");
+            var token = new TokenGenerator().Generate(candidate);
+            candidate.Password = "";
+            return Ok(new {token, candidate});
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 
     [HttpPost()]
     [AllowAnonymous]
@@ -47,7 +55,7 @@ public class CandidateController : Controller
     }
 
     [HttpDelete("{id}")]
-    // [Authorize]
+    [Authorize]
     public async Task<IActionResult> DeleteCandidate(Guid id)
     {
         try
@@ -65,7 +73,7 @@ public class CandidateController : Controller
     }
 
     [HttpGet()]
-    // [Authorize]
+    [Authorize]
     public async Task<IActionResult> GetAllCandidates()
     {
         try
@@ -82,7 +90,7 @@ public class CandidateController : Controller
     }
     
     [HttpGet("{id}")]
-    // [Authorize]
+    [Authorize]
     public async Task<IActionResult> GetCandidate(string id)
     {
         try
@@ -99,7 +107,7 @@ public class CandidateController : Controller
     }
 
     [HttpPut()]
-    // [Authorize]
+    [Authorize]
     public async Task<IActionResult> UpdateCandidate([FromBody] Candidate candidate)
     {
         try
