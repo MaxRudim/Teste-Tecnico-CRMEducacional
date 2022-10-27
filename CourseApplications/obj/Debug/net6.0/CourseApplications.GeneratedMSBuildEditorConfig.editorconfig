@@ -14,3 +14,7 @@ build_property.SupportLocalizedComponentNames =
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = /home/max/Documentos/teste-tecnico/CourseApplications
 build_property._RazorSourceGeneratorDebug = 
+
+[/home/max/Documentos/teste-tecnico/CourseApplications/Views/Shared/candidateview.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL2NhbmRpZGF0ZXZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 

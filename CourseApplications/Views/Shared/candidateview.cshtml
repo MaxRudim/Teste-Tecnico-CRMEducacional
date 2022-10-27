@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <th>Email</th>
+    <th>Cpf</th>
+  </tr>
+
+  @foreach (var item in ViewBag.Candidate)
+  {
+    <tr>
+      <td>
+        @item.Email;
+      </td>
+      <td>
+        @item.Cpf;
+      </td>
+    </tr>
+  }
+</table>

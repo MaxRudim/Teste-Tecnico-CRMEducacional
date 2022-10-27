@@ -75,6 +75,14 @@ public class CandidateController : Controller
         }
     }
 
+    [HttpGet("view")]
+    public async Task<IActionResult> CandidateView()
+    {
+      var candidateList = await _repository.GetAll();
+      ViewBag.candidate = candidateList;
+      return View();
+    }
+    
     [HttpGet()]
     [Authorize]
     public async Task<IActionResult> GetAllCandidates()

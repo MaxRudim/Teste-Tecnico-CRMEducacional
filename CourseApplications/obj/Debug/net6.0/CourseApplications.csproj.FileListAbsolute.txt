@@ -61,3 +61,5 @@
 /home/max/Documentos/teste-tecnico/CourseApplications/obj/Debug/net6.0/CourseApplications.pdb
 /home/max/Documentos/teste-tecnico/CourseApplications/obj/Debug/net6.0/CourseApplications.genruntimeconfig.cache
 /home/max/Documentos/teste-tecnico/CourseApplications/bin/Debug/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/max/Documentos/teste-tecnico/CourseApplications/obj/Debug/net6.0/CourseApplications.RazorAssemblyInfo.cache
+/home/max/Documentos/teste-tecnico/CourseApplications/obj/Debug/net6.0/CourseApplications.RazorAssemblyInfo.cs

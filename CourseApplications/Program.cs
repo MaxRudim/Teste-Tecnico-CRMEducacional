@@ -9,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddMvcCore();
+builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<CourseContext>();
 builder.Services.AddScoped<ICourseContext, CourseContext>();
 builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
